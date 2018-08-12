@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+{% block title %}{% endblock %}
+{% block body %}
+    <H1>Страница тестовая</H1>
+    <h2>Привет</h2>
+    {% if name is defined %}
+        <h1>{{ name }}</h1>
+    {% endif %}
+
+
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "/user/baseuser.html.twig" %}
+{% block title %} {% endblock %}
+{% block body %}
+    <H1>Ответ</H1>
+    <h2>Пользователь с id = {{ name }} записан в базу</h2>
+    <ul>
+        {% for u in user %}
+            <li>
+                {{ u.name }}
+                {{ u.lastname }}
+            </li>
+        {% endfor %}
+    </ul>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/user">users</a> </li>
+    </ul>
+
+{% endblock %}

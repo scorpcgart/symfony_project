@@ -1,0 +1,19 @@
+scorp_symfony_users:
+  path: /
+  controller: App\Controller\UserController::index
+
+scorp_symfony_user:
+  path: /{id}
+  controller: App\Controller\UserController::user
+  requirements:
+    id: '\d+'
+
+scorp_symfony_add_user:
+  path: /add
+  controller: App\Controller\UserController::addUser
+
+scorp_symfony_del_user:
+  path: /del/{id}
+  controller: App\Controller\UserController::deleteUser
+  requirements:
+    id: '\d+'

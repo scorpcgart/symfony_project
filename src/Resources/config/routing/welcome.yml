@@ -1,0 +1,7 @@
+scorp_symfony_users:
+  path: /
+  controller: App\Controller\WelcomeController::index
+
+scorp_symfony_user:
+  path: /{id}
+  controller: App\Controller\WelcomeController::user

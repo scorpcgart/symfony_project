@@ -1,0 +1,15 @@
+scorp_symfony_user:
+  resource: "config/routing/user.yml"
+  prefix: /user
+
+scorp_symfony_welcome:
+  path: /welcome
+  controller: App\Controller\WelcomeController::index
+
+scorp_symfony_welcome_user:
+  path: /welcome/{id}
+  controller: App\Controller\WelcomeController::user
+
+homepage:
+  path: /
+  controller: App\Controller\DefaultController::index

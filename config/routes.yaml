@@ -1,0 +1,6 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+scorp_symfony:
+  resource: "config/routing.yml"
+  prefix: /
