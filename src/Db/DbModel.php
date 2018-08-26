@@ -16,6 +16,13 @@ class DbModel
      */
     public function __construct(DbConnection $dbConnection)
     {
+        $params = new DbParamsDTO();
+        $params->setHost('localhost');
+        $params->setDbName('twig_test_db');
+        $params->setUserName('root');
+        $params->setPassword('admin');
+        $dbConnection->setParams($params);
+        $dbConnection->connect();
         $this->dbConnection = $dbConnection;
     }
 
