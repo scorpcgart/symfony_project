@@ -32,6 +32,16 @@ class DbModel
     public function query(string $query)
     {
         $this->statement = $this->dbConnection->getConnection()->prepare($query);
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function execute()
+    {
+        return $this->statement->execute();
     }
 
     /**
@@ -39,9 +49,22 @@ class DbModel
      */
     public function getAll(): array
     {
-        $this->statement->execute();
+        $this->execute();
 
         return $this->statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function bind(string $paramName, $value)
+    {
+        $pdoParamType = \PDO::PARAM_STR;
+
+        if (is_integer($value)) {
+            $pdoParamType = \PDO::PARAM_INT;
+        }
+
+        $this->statement->bindParam($paramName, $value);
+
+        return $this;
     }
 
 }
