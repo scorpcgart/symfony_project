@@ -1,7 +1,12 @@
 <?php
 namespace App\Controller;
 
+//require_once  __DIR__ .'/../Resources/config/db.yml';
+use App\Db\DbConnection;
+use App\Db\DbModel;
+use App\Db\DbParamsDTO;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Yaml\Yaml;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\PDOquery\PDOConnect;
@@ -10,6 +15,24 @@ use App\Form\UserType;
 
 class UserController extends AbstractController
 {
+    protected $connect;
+    protected $db;
+
+    public function __construct(DbConnection $dbConnection)
+    {
+
+        $params = new DbParamsDTO();
+        $params->setHost('localhost');
+        $params->setDbName('twig_test_db');
+        $params->setUserName('root');
+        $params->setPassword('admin');
+        $dbConnection->setParams($params);
+        $dbConnection->connect();
+        $this->connect = $dbConnection;
+
+        //$this->db = $dbConnection->connect();
+    }
+
     /**
      *
      */
@@ -26,7 +49,14 @@ class UserController extends AbstractController
      */
     public function user($id)
     {
-        $pdo = new PDOConnect('twig_test_db', 'root', 'admin');
+        $load = Yaml::parseFile('../src/Resources/config/db.yml');
+        $db = $load['dbname'];
+        $username = $load['username'];
+        $pass = $load['password'];
+        //$this->db = $this->connect->
+        var_dump($this->connect);
+        var_dump($this->db);
+        $pdo = new PDOConnect($db, $username, $pass);
         $user = $pdo->getUser($id);
 
         return $this->render('user/user.html.twig', array('user' => $user, 'id' => $id));
