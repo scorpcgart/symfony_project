@@ -2,18 +2,12 @@
 {% block title %} {% endblock %}
 {% block body %}
     <H1>Ответ</H1>
-    {% if user is defined %}
-    <h2>Пользователь с id = {{ name }} записан в базу</h2>
-    <ul>
-        {% for u in user %}
-            <li>
-                {{ u.name }}
-                {{ u.lastname }}
-            </li>
+    {% if name is defined %}
+    <p>Пользователь {{ name }} {{ lastname }} записан в базу</p>
+    {% else %}
+        <p>пользователь {% for ud in userDeleting %}
+            <b>{{ ud.name }} {{ ud.lastname }} </b> удален </p>
         {% endfor %}
-    </ul>
-        {% else %}
-        <h2>ползователь удален</h2>
     {% endif %}
     <ul>
         <li><a href="/">Home</a></li>

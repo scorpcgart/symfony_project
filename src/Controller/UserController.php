@@ -1,10 +1,6 @@
 <?php
 namespace App\Controller;
 
-//require_once  __DIR__ .'/../Resources/config/db.yml';
-use App\Db\DbConnection;
-use App\Db\DbModel;
-use App\Db\DbParamsDTO;
 use App\Repositories\UserRepository;
 use App\Services\EditorUserService;
 use Symfony\Component\HttpFoundation\Request;
@@ -55,11 +51,9 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted()){
-            $nameUser = $user->getName();
-             //$userQuery = $pdo->getUserByName($nameUser);
             $this->userRepository->addUser($user->getName(),$user->getLastname(),$user->getEmail());
 
-            return $this->render('user/response-user.html.twig', array('user' => $user->getName(), 'name' => $nameUser));
+            return $this->render('user/response-user.html.twig', array('lastname' => $user->getLastname(), 'name' => $user->getName()));
         }
         return $this->render('user/formuser.html.twig', array(
                 'post' => $user,
@@ -69,11 +63,10 @@ class UserController extends AbstractController
 
     public function deleteUser($id)
     {
+       $userDeleting = $this->userRepository->getNameUserById($id);
        $this->userRepository->deleteUser($id);
 
-        return $this->render('user/response-user.html.twig', array());
-
-
+       return $this->render('user/response-user.html.twig', array('userDeleting' => $userDeleting));
     }
 
 }

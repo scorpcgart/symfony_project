@@ -1,17 +1,23 @@
 {% extends "/user/baseuser.html.twig" %}
 {% block title %} {% endblock %}
 {% block body %}
-    <H1>Страница тестовая</H1>
-    <h2>Все пользователи</h2>
-    <ul>
-        {% for user in users %}
-            <li>
-                <b>id = </b>{{ user.id }}
-                <b>name</b> {{ user.name }}
-                <b>lastname</b>{{ user.lastname }}
-                <br><br>
-            </li>
-        {% endfor %}
-    </ul>
+
+    <table border="1">
+        <caption>Пользователи</caption>
+        <tr>
+            <th> id </th>
+            <th> имя </th>
+            <th> фамилия </th>
+            <th> удалить </th>
+        </tr>
+        <tr>
+            {% for user in users %}
+            <td> {{ user.id }} </td>
+            <td> {{ user.name }} </td>
+            <td> {{ user.lastname }} </td>
+            <td><a href="{{ path('scorp_symfony_del_user', {'id': user.id}) }}">delete</a></td>
+        </tr>
+            {% endfor %}
+    </table>
 
 {% endblock %}

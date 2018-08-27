@@ -58,4 +58,14 @@ class UserRepository
 
         return $this->pdo->execute();
     }
+
+    public function getNameUserById($userId)
+    {
+        $query = "SELECT name, lastname FROM Users WHERE id = :id";
+
+        $this->pdo->query($query);
+        $this->pdo->bind(':id', $userId, PDO::PARAM_INT);
+
+        return $this->pdo->getAll();
+    }
 }
