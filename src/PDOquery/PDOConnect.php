@@ -6,14 +6,22 @@ use PDOException;
 
 class PDOConnect
 {
+    const HOST = 'localhost';
+
     private $pdo;
 
+    /**
+     * PDOConnect constructor.
+     * @param $dbname
+     * @param $username
+     * @param $pass
+     */
     public function __construct($dbname, $username, $pass)
     {
-        $host = 'localhost';
+
         try
         {
-            $this->pdo = new PDO("mysql:dbname=$dbname;host=$host", $username, $pass);
+            $this->pdo = new PDO("mysql:dbname=$dbname;host=". self::HOST, $username, $pass);
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
         catch (PDOException $e)
@@ -23,11 +31,17 @@ class PDOConnect
         }
     }
 
+    /**
+     * @return PDO
+     */
     public function getPDO()
     {
         return $this->pdo;
     }
 
+    /**
+     * @return array
+     */
     public function getUsers(): array
     {
         try
@@ -45,6 +59,10 @@ class PDOConnect
         return $sth->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * @param $id
+     * @return array
+     */
     public function getUser($id)
     {
         try
@@ -85,6 +103,12 @@ class PDOConnect
         return $sth->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * @param $name
+     * @param $lastname
+     * @param $email
+     * @return bool
+     */
     public function addUser($name, $lastname, $email)
     {
         try
@@ -105,6 +129,10 @@ class PDOConnect
         return $sth->execute();
     }
 
+    /**
+     * @param $id
+     * @return bool
+     */
      public function deleteUser($id)
      {
          try
@@ -123,6 +151,10 @@ class PDOConnect
          return $sth->execute();
      }
 
+    /**
+     * @param $name
+     * @return mixed
+     */
      public function getIdByName($name)
      {
          try

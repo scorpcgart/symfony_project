@@ -1,0 +1,3 @@
+dbname: 'twig_test_db'
+username: 'root'
+password: 'admin'

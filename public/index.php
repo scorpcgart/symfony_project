@@ -37,3 +37,9 @@ $request = Request::createFromGlobals();
 $response = $kernel->handle($request);
 $response->send();
 $kernel->terminate($request, $response);
+
+$load = Yaml::parseFile('../src/Resources/config/db.yml');
+$db = $load['dbname'];
+$username = $load['username'];
+$pass = $load['password'];
+

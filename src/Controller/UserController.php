@@ -1,7 +1,10 @@
 <?php
 namespace App\Controller;
 
+use App\Repositories\UserRepository;
+use App\Services\EditorUserService;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Yaml\Yaml;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\PDOquery\PDOConnect;
@@ -10,13 +13,23 @@ use App\Form\UserType;
 
 class UserController extends AbstractController
 {
+
+    protected $userRepository;
+
+    protected $userService;
+
+    public function __construct(UserRepository $userRepository, EditorUserService $userService)
+    {
+        $this->userRepository = $userRepository;
+        $this->userService = $userService;
+    }
+
     /**
      *
      */
     public function index()
     {
-        $pdo = new PDOConnect('twig_test_db', 'root', 'admin');
-        $users = $pdo->getUsers();
+        $users = $this->userRepository->getUsers();
 
         return $this->render('user/users.html.twig', array('users' => $users));
     }
@@ -26,26 +39,21 @@ class UserController extends AbstractController
      */
     public function user($id)
     {
-        $pdo = new PDOConnect('twig_test_db', 'root', 'admin');
-        $user = $pdo->getUser($id);
+        $user = $this->userService->getUsers($id);
 
         return $this->render('user/user.html.twig', array('user' => $user, 'id' => $id));
     }
 
     public function addUser(Request $request)
     {
-        $pdo = new PDOConnect('twig_test_db', 'root', 'admin');
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
-        //$result = $pdo->addUser($user->getName(), $user->getLastname(), $user->getEmail());
         if($form->isSubmitted()){
-            $nameUser = $user->getName();
-             $userQuery = $pdo->getUserByName($nameUser);
-            $pdo->addUser($user->getName(), $user->getLastname(), $user->getEmail());
+            $this->userRepository->addUser($user->getName(),$user->getLastname(),$user->getEmail());
 
-            return $this->render('user/response-user.html.twig', array('user' => $userQuery, 'name' => $nameUser));
+            return $this->render('user/response-user.html.twig', array('lastname' => $user->getLastname(), 'name' => $user->getName()));
         }
         return $this->render('user/formuser.html.twig', array(
                 'post' => $user,
@@ -55,13 +63,10 @@ class UserController extends AbstractController
 
     public function deleteUser($id)
     {
-        $pdo = new PDOConnect('twig_test_db', 'root', 'admin');
-        $users = $pdo->getUsers();
-            $pdo->deleteUser($id);
+       $userDeleting = $this->userRepository->getNameUserById($id);
+       $this->userRepository->deleteUser($id);
 
-            return $this->render('user/users.html.twig', array('users' => $users));
-
-
+       return $this->render('user/response-user.html.twig', array('userDeleting' => $userDeleting));
     }
 
 }
