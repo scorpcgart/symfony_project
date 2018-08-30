@@ -54,6 +54,13 @@ class DbModel
         return $this->statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getFetch()
+    {
+        $this->execute();
+
+        return $this->statement->fetch(PDO::FETCH_ASSOC);
+    }
+
     public function bind(string $paramName, $value)
     {
         $pdoParamType = \PDO::PARAM_STR;

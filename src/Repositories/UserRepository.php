@@ -68,4 +68,5 @@ class UserRepository
 
         return $this->pdo->getAll();
     }
+
 }

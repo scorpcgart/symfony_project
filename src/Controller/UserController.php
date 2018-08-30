@@ -6,8 +6,6 @@ use App\Services\EditorUserService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
-use App\PDOquery\PDOConnect;
 use App\Entity\User;
 use App\Form\UserType;
 
