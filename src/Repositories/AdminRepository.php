@@ -22,4 +22,26 @@ class AdminRepository
 
         return $this->pdo->getFetch();
     }
+
+    public function addArticle($title, $text)
+    {
+        $query = "INSERT INTO Articles (title, text) VALUES (:title, :text)";
+
+        $this->pdo->query($query);
+        $this->pdo->bind(':title', $title);
+        $this->pdo->bind(':text', $text);
+
+        return $this->pdo->execute();
+    }
+
+    public function getArticles()
+    {
+        $query = "SELECT title, text FROM Articles";
+
+        $this->pdo->query($query);
+        $this->pdo->execute();
+
+        return $this->pdo->getAll();
+
+    }
 }

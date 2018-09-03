@@ -1,0 +1,11 @@
+adminka_index:
+  path: /{login}/{pass}
+  controller: App\Controller\AdminController::index
+
+adminka_add_article:
+  path: /add-article
+  controller: App\Controller\AdminController::addArticleAction
+
+adminka_get_articles:
+  path: /articles
+  controller: App\Controller\AdminController::getArticlesAction

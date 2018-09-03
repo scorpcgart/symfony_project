@@ -10,9 +10,9 @@ scorp_symfony_welcome_user:
   path: /welcome/{id}
   controller: App\Controller\WelcomeController::user
 
-scorp_symfony_admin:
-  path: /admin/{login}/{pass}
-  controller: App\Controller\AdminController::index
+scorp_symfony_adminka:
+  resource: "config/routing/adminka.yml"
+  prefix: /admin
 
 homepage:
   path: /

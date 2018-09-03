@@ -1,0 +1,26 @@
+{% extends "/admin/baseadmin.html.twig" %}
+{% block title %} {% endblock %}
+{% block body %}
+
+    {% if title is defined %}
+
+        <H1>Ответ</H1>
+        <p>Пользователь на писал статью про {{ title }} </p>
+
+    {% else %}
+
+        {% for article in articles %}
+
+            <h1>{{ article.title }}</h1>
+            <p>{{ article.text }}</p>
+
+        {% endfor %}
+
+    {% endif %}
+
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="adminka_index">adminka</a> </li>
+    </ul>
+
+{% endblock %}

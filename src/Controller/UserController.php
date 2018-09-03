@@ -4,7 +4,6 @@ namespace App\Controller;
 use App\Repositories\UserRepository;
 use App\Services\EditorUserService;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Yaml\Yaml;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Entity\User;
 use App\Form\UserType;
