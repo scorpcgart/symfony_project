@@ -1,4 +1,7 @@
 {
+    "components/jquery": {
+        "version": "3.3.1"
+    },
     "doctrine/instantiator": {
         "version": "1.1.0"
     },
@@ -91,6 +94,9 @@
     },
     "sebastian/version": {
         "version": "2.0.1"
+    },
+    "symfony/asset": {
+        "version": "v4.1.4"
     },
     "symfony/cache": {
         "version": "v4.1.3"

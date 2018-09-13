@@ -36,12 +36,32 @@ class AdminRepository
 
     public function getArticles()
     {
-        $query = "SELECT title, text FROM Articles";
+        $query = "SELECT * FROM Articles";
 
         $this->pdo->query($query);
         $this->pdo->execute();
 
         return $this->pdo->getAll();
 
+    }
+
+    public function getArticleById($id)
+    {
+        $query = "SELECT title, text FROM Articles WHERE id = :id";
+        $this->pdo->query($query);
+        $this->pdo->bind(':id', $id);
+
+        return $this->pdo->getFetch();
+    }
+
+    public function updateArticle($id, $title, $text)
+    {
+        $query = "UPDATE Articles SET title = :title, text = :text WHERE id = :id";
+        $this->pdo->query($query);
+        $this->pdo->bind(':id', $id);
+        $this->pdo->bind(':title', $title);
+        $this->pdo->bind(':text', $text);
+
+        return $this->pdo->execute();
     }
 }

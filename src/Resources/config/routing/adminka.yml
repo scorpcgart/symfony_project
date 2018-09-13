@@ -1,6 +1,6 @@
 adminka_index:
-  path: /{login}/{pass}
-  controller: App\Controller\AdminController::index
+  path: /
+  controller: App\Controller\AdminController::indexAction
 
 adminka_add_article:
   path: /add-article
@@ -9,3 +9,15 @@ adminka_add_article:
 adminka_get_articles:
   path: /articles
   controller: App\Controller\AdminController::getArticlesAction
+
+adminka_update_article:
+  path: /update-article/{id}
+  controller: App\Controller\AdminController::updateArticleAction
+
+adminka_autorization:
+  path: /authoriz
+  controller: App\Controller\AdminController::autorizationAction
+
+adminka_exit:
+  path: /exit
+  controller: App\Controller\AdminController::exitAction
