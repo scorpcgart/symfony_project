@@ -1,0 +1,11 @@
+{% extends "/admin/baseadmin.html.twig" %}
+
+{% block title %} {% endblock %}
+{% block body %}
+    <h1>Админка</h1>
+    <h2>Привет {{ result }}</h2>
+    <ul>
+        <li><a href="{{ path('adminka_add_article') }}">Добавить статью</a></li>
+        <li><a href="{{ path('adminka_get_articles') }}">Вывести все статьи</a></li>
+    </ul>
+{% endblock %}

@@ -15,7 +15,7 @@
             <td> {{ user.id }} </td>
             <td> {{ user.name }} </td>
             <td> {{ user.lastname }} </td>
-            <td><a href="{{ path('scorp_symfony_del_user', {'id': user.id}) }}">delete</a></td>
+            <td class="button-del"><a href="{{ path('scorp_symfony_del_user', {'id': user.id}) }}">delete</a></td>
         </tr>
             {% endfor %}
     </table>

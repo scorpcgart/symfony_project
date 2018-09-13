@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Админка сайта{% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('/asset/css/style.css') }}">
+    {% endblock %}
+
+</head>
+<body>
+{% block javascripts %}
+    <script src="{{ asset('asset/js/jquery.js') }}"></script>
+    <script src="{{ asset('asset/js/autorz.js') }}"></script>
+{% endblock %}
+{% block body %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <input type="submit" value="Create" />
+    {{ form_end(form) }}
+{% endblock %}
+
+
+</body>
+</html>

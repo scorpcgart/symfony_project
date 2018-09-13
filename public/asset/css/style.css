@@ -1,0 +1,14 @@
+table{
+    border-collapse: collapse;
+    border: 2px;
+}
+th, td {
+    border: 1px solid grey;
+}
+.button-del {
+    background: #faf2cc;
+    color: #a6e1ec;
+}
+hover .button-del{
+    background: #a6e1ec;
+}

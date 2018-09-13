@@ -1,0 +1,25 @@
+{% extends "/admin/baseadmin.html.twig" %}
+{% block title %} {% endblock %}
+{% block body %}
+
+    {% if title is defined %}
+
+        <H1>Ответ</H1>
+        <p>Пользователь {{ user }} написал статью про {{ title }} </p>
+
+    {% else %}
+        {% for article in articles %}
+
+            <h1>{{ article.title }}</h1>
+            <p>{{ article.text }}</p>
+            <a href="{{ path('adminka_update_article', {'id': article.id }) }}">редактировать</a>
+
+        {% endfor %}
+
+    {% endif %}
+    <ul>
+        <li><a href="{{ path('adminka_add_article') }}">Добавить статью</a></li>
+        <li><a href="{{ path('adminka_index') }}">На главную</a></li>
+    </ul>
+
+{% endblock %}
